@@ -60,9 +60,6 @@ public class Board implements IBoard  {
             else if (navires[y-k-1][x-1]!='.'){
               throw new IllegalArgumentException("Le bateau est placé par dessus un autre bâteau.");
             }
-            else{
-              navires[y-k-1][x-1]=ship.getLabel();
-            }
             break;
           case SOUTH:
             if((y+k-1)>=tailleGrille){
@@ -70,9 +67,6 @@ public class Board implements IBoard  {
             }
             else if (navires[y+k-1][x-1]!='.'){
               throw new IllegalArgumentException("Le bateau est placé par dessus un autre bâteau.");
-            }
-            else{
-              navires[y+k-1][x-1]=ship.getLabel();
             }
             break;
           case EAST:
@@ -82,9 +76,6 @@ public class Board implements IBoard  {
             else if (navires[y-1][x+k-1]!='.'){
               throw new IllegalArgumentException("Le bateau est placé par dessus un autre bâteau.");
             }
-            else{
-              navires[y-1][x+k-1]=ship.getLabel();
-            }
             break;
           case WEST:
             if((x-k-1)<0){
@@ -93,9 +84,30 @@ public class Board implements IBoard  {
             else if (navires[y-1][x-k-1]!='.'){
               throw new IllegalArgumentException("Le bateau est placé par dessus un autre bâteau.");
             }
-            else{
-              navires[y-1][x-k-1]=ship.getLabel();
-            }
+            break;
+        }
+      }
+      for(int k=0;k<tailleBoat;k++){
+        switch (ship.getOrientation()){
+          case NORTH:
+
+            navires[y-k-1][x-1]=ship.getLabel();
+
+            break;
+          case SOUTH:
+
+            navires[y+k-1][x-1]=ship.getLabel();
+
+            break;
+          case EAST:
+
+            navires[y-1][x+k-1]=ship.getLabel();
+
+            break;
+          case WEST:
+
+            navires[y-1][x-k-1]=ship.getLabel();
+
             break;
 
         }
