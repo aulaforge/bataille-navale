@@ -2,8 +2,8 @@ package ensta;
 import ships.*;
 public class Board implements IBoard  {
     private String nom;
-    public char[][] navires;
-    public boolean[][] frappes;
+    public ShipState[][] navires;
+    public Boolean[][] frappes;
 
     public String getNom(){
       return nom;
@@ -18,24 +18,22 @@ public class Board implements IBoard  {
         throw new IllegalArgumentException("Taille entrée : " + taille + ". Taille non comprise entre 4 et 26.");
       }
       this.nom=nom;
-      this.navires=new char[taille][taille];
-      this.frappes=new boolean[taille][taille];
+      this.navires=new ShipState[taille][taille];
+      this.frappes=new Boolean[taille][taille];
       for(int i=0; i<taille; i++){
         for(int j=0; j<taille; j++){
-          navires[i][j]='.';
-          frappes[i][j]=false;
+          frappes[i][j]=null;
         }
       }
     }
 
     public Board(String nom){
       this.nom = nom;
-      this.navires=new char[10][10];
-      this.frappes=new boolean[10][10];
+      this.navires=new ShipState[10][10];
+      this.frappes=new Boolean[10][10];
       for(int i=0; i<10; i++){
         for(int j=0; j<10; j++){
-          navires[i][j]='.';
-          frappes[i][j]=false;
+          frappes[i][j]=null;
         }
       }
     }
@@ -57,7 +55,7 @@ public class Board implements IBoard  {
             if((y-k-1)<0){
               throw new ArrayIndexOutOfBoundsException("Le bateau est placé trop haut.");
             }
-            else if (navires[y-k-1][x-1]!='.'){
+            else if (navires[y-k-1][x-1]!=null){
               throw new IllegalArgumentException("Le bateau est placé par dessus un autre bâteau.");
             }
             break;
@@ -65,7 +63,7 @@ public class Board implements IBoard  {
             if((y+k-1)>=tailleGrille){
               throw new ArrayIndexOutOfBoundsException("Le bateau est placé trop bas.");
             }
-            else if (navires[y+k-1][x-1]!='.'){
+            else if (navires[y+k-1][x-1]!=null){
               throw new IllegalArgumentException("Le bateau est placé par dessus un autre bâteau.");
             }
             break;
@@ -73,7 +71,7 @@ public class Board implements IBoard  {
             if((x+k-1)>=tailleGrille){
               throw new ArrayIndexOutOfBoundsException("Le bateau est placé trop à droite.");
             }
-            else if (navires[y-1][x+k-1]!='.'){
+            else if (navires[y-1][x+k-1]!=null){
               throw new IllegalArgumentException("Le bateau est placé par dessus un autre bâteau.");
             }
             break;
@@ -81,7 +79,7 @@ public class Board implements IBoard  {
             if((x-k-1)<0){
               throw new ArrayIndexOutOfBoundsException("Le bateau est placé trop à gauche.");
             }
-            else if (navires[y-1][x-k-1]!='.'){
+            else if (navires[y-1][x-k-1]!=null){
               throw new IllegalArgumentException("Le bateau est placé par dessus un autre bâteau.");
             }
             break;
@@ -91,22 +89,22 @@ public class Board implements IBoard  {
         switch (ship.getOrientation()){
           case NORTH:
 
-            navires[y-k-1][x-1]=ship.getLabel();
+            navires[y-k-1][x-1]=new ShipState(ship);
 
             break;
           case SOUTH:
 
-            navires[y+k-1][x-1]=ship.getLabel();
+            navires[y+k-1][x-1]=new ShipState(ship);
 
             break;
           case EAST:
 
-            navires[y-1][x+k-1]=ship.getLabel();
+            navires[y-1][x+k-1]=new ShipState(ship);
 
             break;
           case WEST:
 
-            navires[y-1][x-k-1]=ship.getLabel();
+            navires[y-1][x-k-1]=new ShipState(ship);
 
             break;
 
@@ -120,14 +118,14 @@ public class Board implements IBoard  {
       if(x<=0||y<=0||x>borne||y>borne){
         throw new ArrayIndexOutOfBoundsException("Les coordonnées entrées ne sont pas comprises entre 1 et " + borne + " (bornes incluses).");
       }
-      if(navires[y-1][x-1]!='.'){
+      if(navires[y-1][x-1]!=null){
         return true;
       }
       return false;
     }
 
 
-    public void setHit(boolean hit, int x, int y){
+    public void setHit(Boolean hit, int x, int y){
       int borne=frappes.length;
       if(x<=0||y<=0||x>borne||y>borne){
         throw new ArrayIndexOutOfBoundsException("Les coordonnées entrées ne sont pas comprises entre 1 et " + borne + " (bornes incluses).");
@@ -137,13 +135,13 @@ public class Board implements IBoard  {
     }
 
 
-    public boolean getHit(int x, int y){
+    public Boolean getHit(int x, int y){
       int borne=frappes.length;
       if(x<=0||y<=0||x>borne||y>borne){
         throw new ArrayIndexOutOfBoundsException("Les coordonnées entrées ne sont pas comprises entre 1 et " + borne + " (bornes incluses).");
       }
-      boolean res=frappes[y-1][x-1];
-      return res;
+      return frappes[y-1][x-1];
+
     }
 
 
@@ -205,7 +203,12 @@ public class Board implements IBoard  {
           System.out.print(j);
         }
         for(int i=0;i<taille; i++){
-          System.out.print(" " + navires[j-1][i]);
+          if(navires[j-1][i]!=null){
+            System.out.print(" " + navires[j-1][i].toString());
+          }
+          else{
+            System.out.print(" " + ".");
+          }
         }
 
         System.out.print("    ");
@@ -217,12 +220,15 @@ public class Board implements IBoard  {
           System.out.print(j);
         }
         for(int i=0;i<taille; i++){
-          char affichageFrappe;
-          if(frappes[j-1][i]){
-            affichageFrappe='x';
+          String affichageFrappe;
+          if(frappes[j-1][i]==null){
+            affichageFrappe=".";
+          }
+          else if(frappes[j-1][i]==false){
+            affichageFrappe=ColorUtil.colorize("X", ColorUtil.Color.WHITE);
           }
           else{
-            affichageFrappe='.';
+            affichageFrappe=ColorUtil.colorize("X", ColorUtil.Color.RED);
           }
           System.out.print(" " + affichageFrappe);
         }

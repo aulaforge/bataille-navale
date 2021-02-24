@@ -7,7 +7,18 @@ public abstract class AbstractShip{
   protected String nom;
   protected int taille;
   protected Orientation orientation;
+  protected int strikeCount;
 
+
+  public void addStrike(){
+    if (strikeCount<taille){
+      strikeCount++;
+    }
+  }
+
+  public boolean isSunk(){
+    return strikeCount==taille;
+  }
 
   public char getLabel(){
     return label;
