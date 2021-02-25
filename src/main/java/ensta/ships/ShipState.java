@@ -10,11 +10,20 @@ public class ShipState{
     this.struck=false;
   }
 
+  public ShipState(){
+    this.struck=false;
+  }
 
-  public void addStrike(){
+
+  public void addStrike() throws Exception{
     if (!struck){
       struck=true;
-      navRef.addStrike();
+      if (navRef!=null){
+        navRef.addStrike();
+      }
+    }
+    else{
+      throw new Exception("La case a déjà été visée");
     }
   }
 
@@ -23,15 +32,25 @@ public class ShipState{
   }
 
   public boolean isSunk(){
-    return navRef.isSunk();
+    if(navRef!=null){
+      return navRef.isSunk();
+    }
+    else{
+      return false;
+    }
   }
 
   public String toString(){
-    if(struck){
-      return String.valueOf(ColorUtil.colorize(navRef.getLabel(), ColorUtil.Color.RED));
+    if(navRef==null){
+      return ".";
     }
     else{
-      return String.valueOf(navRef.getLabel());
+      if(struck){
+        return String.valueOf(ColorUtil.colorize(navRef.getLabel(), ColorUtil.Color.RED));
+      }
+      else{
+        return String.valueOf(navRef.getLabel());
+      }
     }
   }
 

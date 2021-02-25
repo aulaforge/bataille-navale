@@ -23,6 +23,11 @@ class TestBoard {
     Player player=new Player(mytest, ennemyTest,testShips);
     player.putShips();
 
-    mytest.print();
+    player.board.sendHit(6,6);
+    player.board.sendHit(7,6);
+    Hit res=player.board.sendHit(8,6);
+    System.out.println(res);
+    System.out.println(submarine2.isSunk());
+    player.board.print();
   }
 }

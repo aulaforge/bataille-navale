@@ -4,9 +4,9 @@ ships/AbstractShip$Orientation.class
 ensta/Board.class
 ships/Submarine.class
 ships/Carrier.class
+ensta/Hit.class
 ensta/InputHelper.class
 ensta/IBoard.class
-ensta/App.class
 ensta/InputHelper$CoordInput.class
 ships/AbstractShip.class
 ensta/InputHelper$ShipInput.class
