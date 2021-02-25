@@ -1,6 +1,7 @@
 /home/aurelien/Bureau/IN205/projet/bataille-navale/src/main/java/ensta/Hit.java
 /home/aurelien/Bureau/IN205/projet/bataille-navale/src/main/java/ensta/Board.java
 /home/aurelien/Bureau/IN205/projet/bataille-navale/src/main/java/ensta/ships/ColorUtil.java
+/home/aurelien/Bureau/IN205/projet/bataille-navale/src/main/java/ensta/BattleShipsAI.java
 /home/aurelien/Bureau/IN205/projet/bataille-navale/src/main/java/ensta/Player.java
 /home/aurelien/Bureau/IN205/projet/bataille-navale/src/main/java/ensta/TestBoard.java
 /home/aurelien/Bureau/IN205/projet/bataille-navale/src/main/java/ensta/IBoard.java
@@ -9,6 +10,7 @@
 /home/aurelien/Bureau/IN205/projet/bataille-navale/src/main/java/ensta/ships/ShipState.java
 /home/aurelien/Bureau/IN205/projet/bataille-navale/src/main/java/ensta/ships/Destroyer.java
 /home/aurelien/Bureau/IN205/projet/bataille-navale/src/main/java/ensta/ColorUtil.java
+/home/aurelien/Bureau/IN205/projet/bataille-navale/src/main/java/ensta/TestGame.java
 /home/aurelien/Bureau/IN205/projet/bataille-navale/src/main/java/ensta/ships/Submarine.java
 /home/aurelien/Bureau/IN205/projet/bataille-navale/src/main/java/ensta/ships/AbstractShip.java
 /home/aurelien/Bureau/IN205/projet/bataille-navale/src/main/java/ensta/InputHelper.java

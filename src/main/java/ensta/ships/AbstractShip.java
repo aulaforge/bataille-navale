@@ -28,7 +28,7 @@ public abstract class AbstractShip{
     return nom;
   }
 
-  public int getTaille(){
+  public int getLength(){
     return taille;
   }
 

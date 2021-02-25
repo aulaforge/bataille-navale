@@ -50,7 +50,7 @@ public class Board implements IBoard  {
 
     public void putShip(AbstractShip ship, int x, int y){
       int tailleGrille=getSize();
-      int tailleBoat=ship.getTaille();
+      int tailleBoat=ship.getLength();
       for(int k=0;k<tailleBoat;k++){
         switch (ship.getOrientation()){
           case NORTH:
@@ -158,6 +158,7 @@ public class Board implements IBoard  {
           throw new IllegalArgumentException("La case a déjà été visée");
         }
         if(navires[y][x].isSunk()){
+          System.out.println(navires[y][x].getShip().getLabel() + " coulé");
           switch(navires[y][x].getShip().getLabel()){
             case 'D':
               return Hit.DESTROYER;
@@ -177,7 +178,7 @@ public class Board implements IBoard  {
     }
 
     public void print(){
-      int taille=navires.length;
+      int taille=getSize();
       int nombreCaracParLigne;
       if(taille>=27){
         System.out.println("Taille trop grande, non gérée, veuillez rentrer une valeur entre 4 et 26 (bornes incluses).");

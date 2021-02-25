@@ -37,7 +37,7 @@ public class Player {
         do {
             error=false;
             AbstractShip s = ships[i];
-            String msg = String.format("placer %d : %s(%d)", i + 1, s.getNom(), s.getTaille());
+            String msg = String.format("placer %d : %s(%d)", i + 1, s.getNom(), s.getLength());
             System.out.println(msg);
             InputHelper.ShipInput res = InputHelper.readShipInput();
             // TODO set ship orientation

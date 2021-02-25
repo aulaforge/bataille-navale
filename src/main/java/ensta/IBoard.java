@@ -46,5 +46,5 @@ public interface IBoard {
     * @param y
     * @return status for the hit (eg : strike or miss)
     */
-    //Hit sendHit(int x, int y);
+    Hit sendHit(int x, int y);
 }
