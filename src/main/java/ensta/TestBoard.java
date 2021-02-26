@@ -2,7 +2,14 @@ package ensta;
 import ships.*;
 import java.util.*;
 
+
+/**
+* a servi de classe de test pour les premières méthodes et classes définies, concernant les grilles et les navires
+*/
+
 class TestBoard {
+
+
   public static void main(String[] args) {
     Board mytest=new Board("Test");
     Board ennemyTest=new Board("Ennemy test");
