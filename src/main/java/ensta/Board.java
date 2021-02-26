@@ -30,13 +30,7 @@ public class Board implements IBoard  {
       return nom;
     }
 
-    /**
-    *@param nouvNom est le nouveau nom que l'on souhaite donner à la grille
-    */
 
-    public void setNom(String nouvNom){
-      this.nom=nouvNom;
-    }
 
     /** constructeur
     *@param nom est le nom de la grille créée
