@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="ensta.AppTest" time="0.009" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="ensta.AppTest" time="0.007" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="gnome"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -17,7 +17,7 @@
     <property name="user.country" value="FR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64"/>
-    <property name="sun.java.command" value="/home/aurelien/Bureau/IN205/projet/bataille-navale/target/surefire/surefirebooter691458545676518643.jar /home/aurelien/Bureau/IN205/projet/bataille-navale/target/surefire 2021-02-25T20-30-28_050-jvmRun1 surefire6880776242626351570tmp surefire_03013361763070870312tmp"/>
+    <property name="sun.java.command" value="/home/aurelien/Bureau/IN205/projet/bataille-navale/target/surefire/surefirebooter3554234781780636369.jar /home/aurelien/Bureau/IN205/projet/bataille-navale/target/surefire 2021-02-26T12-14-01_037-jvmRun1 surefire8648143303352244406tmp surefire_08367604095819901592tmp"/>
     <property name="surefire.test.class.path" value="/home/aurelien/Bureau/IN205/projet/bataille-navale/target/test-classes:/home/aurelien/Bureau/IN205/projet/bataille-navale/target/classes:/home/aurelien/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/aurelien"/>
@@ -30,13 +30,13 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/aurelien/Bureau/IN205/projet/bataille-navale/target/surefire/surefirebooter691458545676518643.jar"/>
+    <property name="surefire.real.class.path" value="/home/aurelien/Bureau/IN205/projet/bataille-navale/target/surefire/surefirebooter3554234781780636369.jar"/>
     <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/resources.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jsse.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jce.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/charsets.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jfr.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/classes"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="1.8.0_282-8u282-b08-0ubuntu1~18.04-b08"/>
     <property name="user.name" value="aurelien"/>
     <property name="path.separator" value=":"/>
-    <property name="os.version" value="5.4.0-65-generic"/>
+    <property name="os.version" value="5.4.0-66-generic"/>
     <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/endorsed"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
@@ -58,5 +58,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="52.0"/>
   </properties>
-  <testcase name="testApp" classname="ensta.AppTest" time="0.003"/>
+  <testcase name="testApp" classname="ensta.AppTest" time="0.001"/>
 </testsuite>

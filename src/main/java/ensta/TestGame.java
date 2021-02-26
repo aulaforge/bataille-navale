@@ -3,6 +3,16 @@ import ships.*;
 import java.util.*;
 
 public class TestGame{
+
+
+  private static void sleep(int ms) {
+	 try {
+	  Thread.sleep(ms);
+	 } catch (InterruptedException e) {
+     e.printStackTrace();
+	 }
+  }
+
   public static void main(String[] args) {
     Board board=new Board("board");
     //Board player2=new Board("P2");
@@ -33,6 +43,7 @@ public class TestGame{
       System.out.println("Coordonnées du tir : " + Character.toUpperCase((char)(coords[0]+97)) + affichCoordY);
 
       System.out.println("Statut du tir : " +result.toString());
+      sleep(1000);
       if(result!=Hit.MISS&&result!=Hit.STRUCK){
         destructCount++;
       }

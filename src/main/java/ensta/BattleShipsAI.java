@@ -68,7 +68,7 @@ public class BattleShipsAI implements Serializable {
                 // TODO use Random to pick a random x, y & orientation
                 x=rnd.nextInt(size);
                 y=rnd.nextInt(size);
-                o=orientations[rnd.nextInt(4)];
+                s.setOrientation(orientations[rnd.nextInt(4)]);
             } while(!canPutShip(s, x, y));
             board.putShip(s, x, y);
         }
