@@ -73,10 +73,19 @@ public class Player {
         } while (!done);
     }
 
+
+    /**
+    * @param coords tableau de int de taille 2 qui comportera le x puis le y choisi par le joueur pour le tir
+    * @return Hit renvoie le résultat de l'appel à sendHit appliqué à opponent board
+    * @see Board
+    */
     public Hit sendHit(int[] coords) {
         boolean done= false;
         Hit hit = null;
         boolean error=false;
+        if (coords == null || coords.length < 2) {
+            throw new IllegalArgumentException("must provide an initialized array of size 2");
+        }
 
         do {
             error=false;
@@ -93,7 +102,6 @@ public class Player {
             // return hit is obvious. But how to return coords at the same time ?
 
             if(!error){
-              coords=new int[2];
               coords[0]=hitInput.x;
               coords[1]=hitInput.y;
               done=true;

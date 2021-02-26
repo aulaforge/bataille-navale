@@ -1,17 +1,48 @@
 package ensta;
 import ships.*;
+
+
+
+
 public class Board implements IBoard  {
+
+    /**
+    * Nom donné à cette grille (nom du joueur quand il s'agit du joueur et non de l'IA).
+    */
     private String nom;
-    public ShipState[][] navires;
-    public Boolean[][] frappes;
+
+    /**
+    * grille contenant l'état des bateaux du joueur.
+    */
+    protected ShipState[][] navires;
+
+    /**
+    * grille contenant l'état des tirs effectués par le joueur.
+    */
+    protected Boolean[][] frappes;
+
+
+    /**
+    *@return nom de la grille
+    */
 
     public String getNom(){
       return nom;
     }
 
+    /**
+    *@param nouvNom est le nouveau nom que l'on souhaite donner à la grille
+    */
+
     public void setNom(String nouvNom){
       this.nom=nouvNom;
     }
+
+    /** constructeur
+    *@param nom est le nom de la grille créée
+    *@param taille est la taille de la grille créée
+    * @throws IllegalArgumentException si jamais la taille entrée en paramètre n'est pas correcte
+    */
 
     public Board(String nom, int taille){
       if (taille>=27||taille<4){
@@ -28,6 +59,10 @@ public class Board implements IBoard  {
       }
     }
 
+    /** constructeur
+    *@param nom est le nom de la grille créée
+    */
+
     public Board(String nom){
       this.nom = nom;
       this.navires=new ShipState[10][10];
@@ -41,12 +76,23 @@ public class Board implements IBoard  {
     }
 
 
+    /**
+    *@return retourne la taille de la grille de jeu
+    */
 
     public int getSize(){
       int taille=navires.length;
       return taille;
     }
 
+    /**
+    * place un navire à partir d'une position donnée en paramètre
+    *@param ship est le navire que l'on souhaite placer
+    *@param x la position en x où placer le navire
+    *@param y la position en y où placer le navire
+    *@throws ArrayIndexOutOfBoundsException si le navire est placé en partie ou totalement en dehors de la grille
+    *@throws IllegalArgumentException si le navire est placé par dessus un autre navire déjà placé sur la grille
+    */
 
     public void putShip(AbstractShip ship, int x, int y){
       int tailleGrille=getSize();
@@ -54,7 +100,7 @@ public class Board implements IBoard  {
       for(int k=0;k<tailleBoat;k++){
         switch (ship.getOrientation()){
           case NORTH:
-            if((y-k-1)<0){
+            if((y-k)<0){
               throw new ArrayIndexOutOfBoundsException("Le bateau est placé trop haut.");
             }
             else if (hasShip(x, y-k)){
@@ -62,7 +108,7 @@ public class Board implements IBoard  {
             }
             break;
           case SOUTH:
-            if((y+k-1)>=tailleGrille){
+            if((y+k)>=tailleGrille){
               throw new ArrayIndexOutOfBoundsException("Le bateau est placé trop bas.");
             }
             else if (hasShip(x, y+k)){
@@ -70,7 +116,7 @@ public class Board implements IBoard  {
             }
             break;
           case EAST:
-            if((x+k-1)>=tailleGrille){
+            if((x+k)>=tailleGrille){
               throw new ArrayIndexOutOfBoundsException("Le bateau est placé trop à droite.");
             }
             else if (hasShip(x+k, y)){
@@ -78,7 +124,7 @@ public class Board implements IBoard  {
             }
             break;
           case WEST:
-            if((x-k-1)<0){
+            if((x-k)<0){
               throw new ArrayIndexOutOfBoundsException("Le bateau est placé trop à gauche.");
             }
             else if (hasShip(x-k, y)){
@@ -114,6 +160,12 @@ public class Board implements IBoard  {
       }
     }
 
+    /**
+    * @param x position en x
+    * @param y position en y
+    * @return renvoie vrai (true) si il y a un navire à cet emplacement, faux (false) si il n'y en a players
+    * @throws ArrayIndexOutOfBoundsException si les coordonnées ne sont pas valides
+    */
 
     public boolean hasShip(int x, int y){
       int borne=navires.length-1;
@@ -126,6 +178,12 @@ public class Board implements IBoard  {
       return false;
     }
 
+    /**
+    * @param hit la valeur de la frappe qui sera placée sur la grille des frappes
+    * @param x position en x
+    * @param y position en y
+    * @throws ArrayIndexOutOfBoundsException si les coordonnées ne sont pas valides
+    */
 
     public void setHit(Boolean hit, int x, int y){
       int borne=frappes.length-1;
@@ -137,6 +195,13 @@ public class Board implements IBoard  {
     }
 
 
+    /**
+    * @param x position en x
+    * @param y position en y
+    * @return renvoie le statut de la frappe de la grille des frappes en position x,y
+    * @throws ArrayIndexOutOfBoundsException si les coordonnées ne sont pas valides
+    */
+
     public Boolean getHit(int x, int y){
       int borne=frappes.length-1;
       if(x<0||y<0||x>borne||y>borne){
@@ -145,6 +210,13 @@ public class Board implements IBoard  {
       return frappes[y][x];
 
     }
+
+    /**
+    * @param x position en x
+    * @param y position en y
+    * @return MISS si le tir est raté, STRUCK si le tir a touché, l'enum DESTROYER/SUBMARINE/BATTLESHIP/CARRIER correspondant si jamais le navire est détruit avec ce tir
+    * @throws IllegalArgumentException si la case a déjà été visée
+    */
 
 
     public Hit sendHit(int x, int y){
@@ -177,17 +249,14 @@ public class Board implements IBoard  {
       return Hit.MISS;
     }
 
+    /**
+    * permet d'afficher la grille des navires ainsi que la grille des tirs côte à côte
+    */
+
     public void print(){
       int taille=getSize();
       int nombreCaracParLigne;
-      if(taille>=27){
-        System.out.println("Taille trop grande, non gérée, veuillez rentrer une valeur entre 4 et 26 (bornes incluses).");
-        return;
-      }
-      else if(taille<4){
-        System.out.println("Taille trop petite, non gérée, veuillez rentrer une valeur entre 4 et 26 (bornes incluses).");
-        return;
-      }
+
       if (taille<10){
         nombreCaracParLigne=2*taille+1;
       }
