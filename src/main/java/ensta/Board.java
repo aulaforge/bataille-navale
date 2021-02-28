@@ -90,7 +90,11 @@ public class Board implements IBoard  {
 
     public void putShip(AbstractShip ship, int x, int y){
       int tailleGrille=getSize();
+      int borne = tailleGrille-1;
       int tailleBoat=ship.getLength();
+      if (x<0||y<0||x>=tailleGrille||y>=tailleGrille){
+        throw new ArrayIndexOutOfBoundsException("Les coordonnées entrées ne sont pas comprises entre 0 et " + borne + " (bornes incluses).");
+      }
       for(int k=0;k<tailleBoat;k++){
         switch (ship.getOrientation()){
           case NORTH:
